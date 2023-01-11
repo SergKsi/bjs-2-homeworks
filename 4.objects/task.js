@@ -10,19 +10,23 @@ Student.prototype.setSubject = function (subjectName) {
 }
 
 Student.prototype.addMarks = function (...marks) {
-    if ((this.marks === undefined) && (this.marks === null)) {
-        this.marks = [...marks];
-    } else {
+        if (!this.excluded) {  
+            if (!this.marks) {
+                return; 
+            }
         this.marks.push(...marks);
-    }
+        }
 }
 
 Student.prototype.getAverage = function () {
-    if (this.marks.length === 0) {
+    if (this.marks === undefined) {
         return 0;
     } else {
-        let sum = this.marks.reduce((sum, elem) => sum + elem);
-        return sum / this.marks.length;
+        if (this.marks.length === 0) {
+            return 0;
+    }
+    let sum = this.marks.reduce((sum, elem) => sum + elem);
+    return sum / this.marks.length;
     }
 }
 
