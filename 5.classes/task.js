@@ -70,7 +70,6 @@ class Library{
 
     addBook(book) {
         if (book.state > 30) {
-            let str = book.name;
             this.books.push(book);
         }
     }
@@ -79,19 +78,18 @@ class Library{
         for (let i = 0; i < this.books.length; i ++) {
              if (this.books[i][type] === value) {         
                 return this.books[i];
-                break;   
              }
         }
         return null;
     }
 
     giveBookByName(bookName) {
-        let book = '';
+        let booksEquival = "";
         for (let i = 0; i < this.books.length; i++) {
             if (this.books[i].name === bookName) {
-                // book = this.books[i];
-                let book = this.books.pop();
-                return book;
+                booksEquival = this.books[i].name;
+                this.books.splice(i,1);
+                return booksEquival;
             }
         }
         return null;
